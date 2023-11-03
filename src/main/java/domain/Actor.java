@@ -28,9 +28,9 @@ public class Actor {
         return actorId;
     }
 
-    public void setActorId(Long actorId) {
-        this.actorId = actorId;
-    }
+  // public void setActorId(Long actorId) {
+  //     this.actorId = actorId;
+  // }
 
     public String getFirstName() {
         return firstName;
@@ -70,5 +70,16 @@ public class Actor {
 
     public void setFilmList(List<Film> filmList) {
         this.filmList = filmList;
+    }
+
+    @Override
+    public String toString() {
+        return "Actor{" +
+                "actorId=" + actorId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", gender=" + gender +
+                '}';
     }
 }

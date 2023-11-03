@@ -17,4 +17,35 @@ public class Category {
     private List<Film> filmList=new ArrayList<>();
 
 
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+ //   public void setCategoryId(Integer categoryId) {
+ //       this.categoryId = categoryId;
+ //   }
+
+    public CategoryType getCategoryType() {
+        return categoryType;
+    }
+
+    public void setCategoryType(CategoryType categoryType) {
+        this.categoryType = categoryType;
+    }
+
+    public List<Film> getFilmList() {
+        return filmList;
+    }
+
+    public void setFilmList(List<Film> filmList) {
+        this.filmList = filmList;
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "categoryId=" + categoryId +
+                ", categoryType=" + categoryType +
+                '}';
+    }
 }

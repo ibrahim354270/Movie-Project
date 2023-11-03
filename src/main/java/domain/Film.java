@@ -15,7 +15,7 @@ public class Film {
     private String title;
     private Integer relaseYear;
     @Column(name = "imdb_score", precision = 3, scale = 1)
-//precision, toplam basamak sayısını, scale ise ondalık basamak sayısını belirtir.
+    //precision, toplam basamak sayısını, scale ise ondalık basamak sayısını belirtir.
     private Double imdbScore;
     private Integer length;
     private LocalDateTime lastUpdate;//sisteme eklendiği tarih-prepersist
@@ -24,15 +24,15 @@ public class Film {
     private Language language;
     @ManyToMany
     @JoinTable(name = "film_actor",//3.oluşacak tablonun adı
-            joinColumns = {@JoinColumn(name = "film_id")},//tablo adı
-            inverseJoinColumns = {@JoinColumn(name = "actor_id")})//bağlantılı tablo
+              joinColumns = {@JoinColumn(name = "film_id")},//tablo adı
+              inverseJoinColumns = {@JoinColumn(name = "actor_id")})//bağlantılı tablo
     private List<Actor> actorList = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.EAGER)//film gelice categorylerde onunla geldin
     @JoinTable(name = "film_category",//3.oluşacak tablonun adı
             joinColumns = {@JoinColumn(name = "film_id")},//tablo adı
             inverseJoinColumns = {@JoinColumn(name = "category_id")})//bağlantılı tablo
-    private List<Category> categoryList=new ArrayList<>();
+    private List<Category> categoryList = new ArrayList<>();
 
     @PrePersist
     public void prePersist() {
@@ -50,6 +50,14 @@ public class Film {
         this.language = language;
         this.actorList = actorList;
     }
+
+    public Long getFilmID() {
+        return filmID;
+    }
+
+    // public void setFilmID(Long filmID) {
+    //     this.filmID = filmID;
+    // }
 
     public String getTitle() {
         return title;
@@ -83,6 +91,14 @@ public class Film {
         this.length = length;
     }
 
+    public LocalDateTime getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(LocalDateTime lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
+
     public Language getLanguage() {
         return language;
     }
@@ -98,4 +114,30 @@ public class Film {
     public void setActorList(List<Actor> actorList) {
         this.actorList = actorList;
     }
+
+    public List<Category> getCategoryList() {
+        return categoryList;
+    }
+
+    public void setCategoryList(List<Category> categoryList) {
+        this.categoryList = categoryList;
+    }
+
+    @Override
+    public String toString() {
+        return "Film{" +
+                "filmID=" + filmID +
+                ", title='" + title + '\'' +
+                ", relaseYear=" + relaseYear +
+                ", imdbScore=" + imdbScore +
+                ", length=" + length +
+                ", lastUpdate=" + lastUpdate +
+                ", language=" + language +
+                ", actorList=" + actorList +
+                ", categoryList=" + categoryList +
+                '}';
+    }
 }
+
+
+// Select * from film joın actor on film

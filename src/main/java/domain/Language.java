@@ -11,7 +11,40 @@ public class Language {
     @Column(name = "language_id")
     private Integer languageId;
     private LanguageName name;
-    @OneToMany(mappedBy = "language",cascade = CascadeType.ALL,fetch = FetchType.EAGER)//language fieldı oludğu classdan set edilecek,bu tablo silinice değerleri null olunaca,bu tablodan bir data çağırılınca ona bağlı olanlardan gelebilsin
-    private List<Film> filmList=new ArrayList<>();
+    @OneToMany(mappedBy = "language", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //language fieldı oludğu classdan set edilecek,bu tablo silinice değerleri null olunaca,
+    // bu tablodan bir data çağırılınca ona bağlı olanlardan gelebilsin
+    private List<Film> filmList = new ArrayList<>();
 
+    public Integer getLanguageId() {
+        return languageId;
+    }
+
+    //   public void setLanguageId(Integer languageId) {
+    //       this.languageId = languageId;
+    //   }
+
+    public LanguageName getName() {
+        return name;
+    }
+
+    public void setName(LanguageName name) {
+        this.name = name;
+    }
+
+    public List<Film> getFilmList() {
+        return filmList;
+    }
+
+    public void setFilmList(List<Film> filmList) {
+        this.filmList = filmList;
+    }
+
+    @Override
+    public String toString() {
+        return "Language{" +
+                "languageId=" + languageId +
+                ", name=" + name +
+                '}';
+    }
 }
