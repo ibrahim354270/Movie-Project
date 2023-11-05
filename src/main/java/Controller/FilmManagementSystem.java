@@ -18,6 +18,8 @@ public class FilmManagementSystem {
             displayUserMenu();
         } else if (select == 2) {
             displayAdminMenu();
+        }  else if (select == 3) {
+            displayFilmArchive();
         } else {
             System.out.println("Geçersiz tuşlama");
         }
