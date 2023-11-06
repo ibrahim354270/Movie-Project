@@ -10,15 +10,16 @@ public class Actor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "actor_id")
     private Long actorId;
-    @Column(name="first_name",nullable = false,length = 50)
-    private String firstName;
-    @Column(name="last_name",length = 50)
-    private String lastName;
-    private Integer age;
+    @Column(name = "first_name", nullable = false, length = 50)
+    private String Name;
 
+    private Integer age;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "gender")
     private Gender gender;
-    @ManyToMany(mappedBy = "actorList")//actorlist in olacağı classtan setleme işlemi yapılacak
-    private List<Film> filmList=new ArrayList<>();
+    @ManyToMany(mappedBy = "actorList", cascade = CascadeType.ALL)
+//actorlist in olacağı classtan setleme işlemi yapılacak
+    private List<Film> filmList = new ArrayList<>();
 
 
     public Actor() {
@@ -28,24 +29,17 @@ public class Actor {
         return actorId;
     }
 
-  // public void setActorId(Long actorId) {
-  //     this.actorId = actorId;
-  // }
+    // public void setActorId(Long actorId) {
+    //     this.actorId = actorId;
+    // }
 
-    public String getFirstName() {
-        return firstName;
+
+    public String getName() {
+        return Name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        Name = name;
     }
 
     public Integer getAge() {
@@ -76,8 +70,7 @@ public class Actor {
     public String toString() {
         return "Actor{" +
                 "actorId=" + actorId +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                ", Name='" + Name + '\'' +
                 ", age=" + age +
                 ", gender=" + gender +
                 '}';

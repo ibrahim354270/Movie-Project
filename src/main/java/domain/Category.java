@@ -10,7 +10,8 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "category_id")
     private Integer categoryId;
-
+    @Enumerated(EnumType.STRING)
+    @Column(name = "category_name")
     private CategoryType categoryType;
 
     @ManyToMany(mappedBy ="categoryList" )
