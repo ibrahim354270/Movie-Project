@@ -3,7 +3,9 @@ package domain;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Film {
@@ -26,7 +28,7 @@ public class Film {
     @JoinTable(name = "film_actor",//3.oluşacak tablonun adı
               joinColumns = {@JoinColumn(name = "film_id")},//tablo adı
               inverseJoinColumns = {@JoinColumn(name = "actor_id")})//bağlantılı tablo
-    private List<Actor> actorList = new ArrayList<>();
+    private Set<Actor> actorList = new LinkedHashSet<>();
 
     @ManyToMany(fetch = FetchType.EAGER)//film gelice categorylerde onunla geldin
     @JoinTable(name = "film_category",//3.oluşacak tablonun adı
@@ -42,7 +44,7 @@ public class Film {
     public Film() {
     }
 
-    public Film(String title, Integer relaseYear, Double imdbScore, Integer length, Language language, List<Actor> actorList) {
+    public Film(String title, Integer relaseYear, Double imdbScore, Integer length, Language language, Set<Actor> actorList) {
         this.title = title;
         this.relaseYear = relaseYear;
         this.imdbScore = imdbScore;
@@ -107,11 +109,11 @@ public class Film {
         this.language = language;
     }
 
-    public List<Actor> getActorList() {
+    public Set<Actor> getActorList() {
         return actorList;
     }
 
-    public void setActorList(List<Actor> actorList) {
+    public void setActorList(Set<Actor> actorList) {
         this.actorList = actorList;
     }
 

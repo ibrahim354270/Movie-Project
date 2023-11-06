@@ -1,6 +1,9 @@
 package Controller;
 
 import config.HibernateUtils;
+import domain.Language;
+import repository.LanguageRepo;
+import service.LanguageService;
 
 import java.util.Scanner;
 
@@ -30,10 +33,10 @@ public class FilmManagementSystem {
         boolean exit = false;
         while (!exit) {
             System.out.println("1)" +//tüm işlemler id ile yapılacak
-                             "\n2)" +
-                             "\n3)" +
-                             "\n4)" +
-                             "\n0)ÇIKIŞ");
+                    "\n2)" +
+                    "\n3)" +
+                    "\n4)" +
+                    "\n0)ÇIKIŞ");
 
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -69,11 +72,11 @@ public class FilmManagementSystem {
         boolean exit = false;
         while (!exit) {
             System.out.println("1)Tüm Filmleri Görüntüleme" +
-                             "\n2)En Son Eklenen Filmleri Görüntüleme" +//en son eklenen 3 filmi getirme
-                             "\n3)Kategorisine Göre Filmleri Görüntüleme" +//KATEGORİ seçenkleri sunulup ona göre filmleri getirme
-                             "\n4)Dillere Göre Görüntüleme" +
-                             "\n5)IMDB puanına Göre Görüntüleme" +//bu kısımda içinde 2 seçenek daha sunulabilir artan ve azalan
-                             "\n6)Film Arama" +//lıke veya ~ kullanarak film ismini bulma
+                    "\n2)En Son Eklenen Filmleri Görüntüleme" +//en son eklenen 3 filmi getirme
+                    "\n3)Kategorisine Göre Filmleri Görüntüleme" +//KATEGORİ seçenkleri sunulup ona göre filmleri getirme
+                    "\n4)Dillere Göre Görüntüleme" +
+                    "\n5)IMDB puanına Göre Görüntüleme" +//bu kısımda içinde 2 seçenek daha sunulabilir artan ve azalan
+                    "\n6)Film Arama" +//lıke veya ~ kullanarak film ismini bulma
                     "\n0)ÇIKIŞ ");
 
             int choice = scanner.nextInt();
@@ -106,6 +109,8 @@ public class FilmManagementSystem {
     }
 
     public static void displayFilmArchive() {
+        LanguageRepo languageRepo = new LanguageRepo();
+        LanguageService languageServise = new LanguageService(languageRepo);
 
         boolean exit = false;
 
@@ -132,7 +137,7 @@ public class FilmManagementSystem {
 
                     break;
                 case 4:
-
+                    displayLanguageMenu(languageServise);
                     break;
                 case 0:
                     exit = true;
@@ -147,5 +152,28 @@ public class FilmManagementSystem {
         }
     }
 
+    private static void displayLanguageMenu(LanguageService languageService) {
+        System.out.println("*****View Language Information***");
+        System.out.println("1)Bütün Dillerde ki Filmleri  Gösterme" +
+                "\n2)DilKategorisine Yeni Film ekleme" +//setleme film cate. olacak.tabloda film yok.
+                "\n3)Dil Kategorisinden Film Çıkarma" +//setleme film cate. olacak.tabloda film yok.
+                "\n4)Dil Bilgilerini Güncelleme");//setleme film cate. olacak.tabloda film yok.
+//setleme film cate. olacak.tabloda film yok.
+        int select = scanner.nextInt();
+        scanner.nextLine();
 
+        switch (select) {
+            case 1:
+                languageService.displayAllFilmInLanTable();
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+        }
+
+
+    }
 }

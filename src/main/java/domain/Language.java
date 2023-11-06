@@ -10,6 +10,8 @@ public class Language {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "language_id")
     private Integer languageId;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "language_name")
     private LanguageName name;
     @OneToMany(mappedBy = "language", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     //language fieldı oludğu classdan set edilecek,bu tablo silinice değerleri null olunaca,
@@ -29,6 +31,10 @@ public class Language {
     }
 
     public void setName(LanguageName name) {
+        this.name = name;
+    }
+
+    public Language(LanguageName name) {
         this.name = name;
     }
 
