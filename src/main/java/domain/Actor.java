@@ -1,51 +1,48 @@
 package domain;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name= "t_actor")
 public class Actor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "actor_id")
     private Long actorId;
-    @Column(name="first_name",nullable = false,length = 50)
-    private String firstName;
-    @Column(name="last_name",length = 50)
-    private String lastName;
+    @Column(name="full_name",nullable = false,length = 50)
+    private String fullName;
+    @Column(nullable = false)
     private Integer age;
-
+    @Column(nullable = false)
     private Gender gender;
+
+    private LocalDateTime createDate;
     @ManyToMany(mappedBy = "actorList")//actorlist in olacağı classtan setleme işlemi yapılacak
     private List<Film> filmList=new ArrayList<>();
 
-
-    public Actor() {
+    @PrePersist
+    public void prePersist(){
+        this.createDate=LocalDateTime.now();
     }
 
     public Long getActorId() {
         return actorId;
     }
 
-  // public void setActorId(Long actorId) {
-  //     this.actorId = actorId;
-  // }
+    // public void setActorId(Long actorId) {
+    //     this.actorId = actorId;
+    // }
 
-    public String getFirstName() {
-        return firstName;
+
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public Integer getAge() {
@@ -64,6 +61,10 @@ public class Actor {
         this.gender = gender;
     }
 
+    public LocalDateTime getCreateDate() {
+        return createDate;
+    }
+
     public List<Film> getFilmList() {
         return filmList;
     }
@@ -76,10 +77,10 @@ public class Actor {
     public String toString() {
         return "Actor{" +
                 "actorId=" + actorId +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                ", fullName='" + fullName + '\'' +
                 ", age=" + age +
                 ", gender=" + gender +
+                ", createDate=" + createDate +
                 '}';
     }
 }
